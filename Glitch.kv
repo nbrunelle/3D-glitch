@@ -1,0 +1,73 @@
+#:kivy 1.0.9
+
+<Menu>
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    import_btn: import_btn
+    g_lvl: glitch_lvl
+    corrupt:corruption
+    glitch_text: TextImport
+    f_src: f_src
+    id:menu
+    GridLayout:
+        size: (root.width, root.height)
+        rows: 4
+        cols: 1
+        padding: 10
+        spacing: 10
+        BoxLayout:
+            orientation:'vertical'
+            Button:
+                id: import_btn
+                on_press: root.import_file()
+                text: 'Importer un fichier'
+                spacing:0
+            Label:
+                id: f_src
+        BoxLayout:
+            orientation:'vertical'
+            Label:
+                text: "Texte :"
+            TextInput:
+                size_hint_y:None
+                height:100
+                id: TextImport
+                text: "default text"
+                on_text: app.getText(self)
+        BoxLayout:
+            orientation:'vertical'
+            Label:
+                text: "Niveau de conservation :"
+            Slider:
+                id: glitch_lvl
+                orientation: 'horizontal'
+                min: 0
+                max: 100
+                value: 50
+                step:1
+                on_value: root.lvl(self.value_normalized)
+        Button:
+            id: corruption
+            on_press: app.corrupt()
+            text: 'Corrompre'
+
+<Renderer>
+
+
+<GlitchGUI>:
+    canvas.before:
+        Color:
+            rgba: 0.75, 0.75, 0.75, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    menu: menu
+    BoxLayout:
+        size: (root.width, root.height)
+        Menu:
+            id: menu
+            size_hint: (1, 1)

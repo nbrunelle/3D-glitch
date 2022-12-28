@@ -1,0 +1,21 @@
+#:kivy 1.0.9
+
+<3d>:
+    f_TextImport : TextImport
+    GridLayout:
+        rows: 4
+        cols: 1
+        padding: 10
+        spacing: 10
+        Label:
+            text: "Texte :"
+        TextInput:
+            id: TextImport
+        Label:
+            text "Niveau de corruption :"
+        Slider:
+            orientation: 'horizontal'
+            min: 0
+            max: 100
+            value: 0
+
